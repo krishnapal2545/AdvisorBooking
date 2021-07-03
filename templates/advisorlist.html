@@ -22,7 +22,7 @@
         }
       </style>
 </head>
-<body>
+<body style="background-color: rgba(0, 0, 0, 0.233);">
     {% block content %} 
     {% for message in messages %}
     <div class="container-fluid p-0">
@@ -40,14 +40,14 @@
                     style="max-height: 500px; max-width:300px; padding:10px 30px; margin:auto;">
             </div>
             <div class="col-md-8">
-                <div class="card-body">
+                <div class="card-body"style="font-family: 'Times New Roman', Times, serif;">
                     <h5 class="card-title">{{Advisor.name}}</h5>
                     <p class="card-text">{{Advisor.ad_id}}</p>
                     <form method="POST">{% csrf_token %}
                         <input type="hidden" name="ad_id" value="{{Advisor.ad_id}}">
                         <input type="hidden" name="name" value="{{Advisor.name}}">
                         <input type="hidden" name="photo" value="{{Advisor.photo_url}}">
-                        <input id="in" type="date" name="date" ><input id="in" type="time" name="time" >
+                        <input id="in" type="date" name="date" required><input id="in" type="time" name="time" required>
                         <button class="btn btn-primary" type="submit" style="margin: 5px 5px;">Book Your Appoiment</button>
                     </form>
                 </div>
