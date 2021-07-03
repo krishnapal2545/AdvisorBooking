@@ -1,0 +1,60 @@
+{% include 'mainstyle.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #in {
+          width: 50%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+        #b {
+          border-radius: 15px;
+          margin: auto;
+        }
+        button:hover {
+          opacity: 1;
+        }
+      </style>
+</head>
+<body>
+    {% block content %} 
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }} alert-dismissible" role="alert" style="text-align: center;">
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
+    <div style="margin-top: 10px;"></div>
+    {% for Advisor in Advisors %}
+    <div class="card mb-3" style="max-width: 800px; margin:auto;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{Advisor.photo_url}}"
+                    style="max-height: 500px; max-width:300px; padding:10px 30px; margin:auto;">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{Advisor.name}}</h5>
+                    <p class="card-text">{{Advisor.ad_id}}</p>
+                    <form method="POST">{% csrf_token %}
+                        <input type="hidden" name="ad_id" value="{{Advisor.ad_id}}">
+                        <input type="hidden" name="name" value="{{Advisor.name}}">
+                        <input type="hidden" name="photo" value="{{Advisor.photo_url}}">
+                        <input id="in" type="date" name="date" ><input id="in" type="time" name="time" >
+                        <button class="btn btn-primary" type="submit" style="margin: 5px 5px;">Book Your Appoiment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
+</body>
+</html>

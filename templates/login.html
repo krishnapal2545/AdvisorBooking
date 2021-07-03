@@ -1,0 +1,94 @@
+{% load static %}
+{% include 'mainstyle.html'%}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    #in {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+
+    #b {
+      border-radius: 15px;
+      margin: auto;
+    }
+
+    .imgcontainer {
+      text-align: center;
+      margin: auto;
+      width: 100%;
+      resize: both;
+    }
+
+    .container {
+      border-radius: 20px;
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+
+    button:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  {%block content%}
+  {% for message in messages %}
+  <div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert" style="text-align: center;">
+      {{ message }}
+    </div>
+  </div>
+  {% endfor %}
+  <div class="card mb-3"
+    style="max-width: 500px; margin:auto; border-radius:20px; padding: 10px; background-color: #f2f2f2; ">
+    <div class="row g-0">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="imgcontainer">
+          <img src="{% static 'avtar.png' %}" alt="Avatar" class="avatar">
+        </div>
+        <label for="account_no"><b>UserID : </b></label>
+        <input id='in' type="text" placeholder="Enter Your UserID Number" name="userid" required><br>
+        <label for="login_id"><b>Email : </b></label>
+        <input id='in' type="text" placeholder="Enter Your Email" name="email" required><br>
+        <label for="password"><b>Password :</b></label>
+        <input id='in' type="password" placeholder="Enter Your Password" name="pass" required><br>
+        <div style="margin: auto; width:60% ; text-align:center">
+          <button type="submit" class="btn btn-primary" style="border-radius: 15px; width:100%;">
+            <b>Login</b></button><br>
+          <a data-toggle="modal" data-target="#myModal" style="cursor: pointer; " href="#">Forget Password?.</a><br>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Forget Password </h4>
+              </div>
+              <div class="modal-body">
+                <p> Contact online with our KIB-Bank staff.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  {%endblock%}
+</body>
+
+</html>
