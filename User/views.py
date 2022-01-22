@@ -38,7 +38,7 @@ def register(request):
         create.save();
         mess = f"Your User ID is {userid}"
         messages.success(request,mess)
-        return render(request,'login.html')
+        return redirect('/login')
     return render(request,'register.html')
 
 
